@@ -1,16 +1,39 @@
-const frases = [
-  "Si alguien busca la salud, pregúntale si está dispuesto a evitar en el futuro las causas de la enfermedad; en caso contrario, abstente de ayudarle.",
-  "Si quieres tener éxito, promete todo y no cumplas nada.",
-  "Cuando las circunstancias cambian, yo cambio de opinión. ¿Usted que hace?",
-  "Los hombres no vivirían mucho tiempo en sociedad si no se engañaran unos a otros.",
-];
-
-const autores = [
-  "Sócrates",
-  "Napoleón",
-  "John Maynard Keynes",
-  "François de La Rochefoucauld",
-];
+const frases_json = {
+  frases: [
+    {
+      frase:
+        "Si alguien busca la salud, pregúntale si está dispuesto a evitar en el futuro las causas de la enfermedad; en caso contrario, abstente de ayudarle.",
+      autor: "Sócrates",
+    },
+    {
+      frase: "Si quieres tener éxito, promete todo y no cumplas nada.",
+      autor: "Napoleón",
+    },
+    {
+      frase:
+        "Cuando las circunstancias cambian, yo cambio de opinión. ¿Usted qué hace?",
+      autor: "John Maynard Keynes",
+    },
+    {
+      frase:
+        "Los hombres no vivirían mucho tiempo en sociedad si no se engañaran unos a otros.",
+      autor: "François de La Rochefoucauld",
+    },
+    {
+      frase: "Cada día sabemos más y entendemos menos.",
+      autor: "Albert Einstein",
+    },
+    {
+      frase: "Lo importante es no dejar de hacerse preguntas.",
+      autor: "Albert Einstein",
+    },
+    {
+      frase:
+        "Dicen que el mono es tan inteligente que no habla para que no lo hagan trabajar.",
+      autor: "René Descartes",
+    },
+  ],
+};
 
 function entero_aleatorio(min, max) {
   min = Math.ceil(min);
@@ -19,10 +42,12 @@ function entero_aleatorio(min, max) {
 }
 
 function poner_frase() {
-  let aleatorio = entero_aleatorio(0, frases.length - 1);
+  let aleatorio = entero_aleatorio(0, frases_json.frases.length - 1);
 
-  document.getElementById("frase").innerText = frases[aleatorio];
-  document.getElementById("autor").innerText = autores[aleatorio];
+  document.getElementById("frase").innerText =
+    '"' + frases_json.frases[aleatorio].frase + '"';
+  document.getElementById("autor").innerText =
+    frases_json.frases[aleatorio].autor;
 }
 
 window.addEventListener(
@@ -33,4 +58,4 @@ window.addEventListener(
   false
 );
 
-setInterval(poner_frase, 2000);
+setInterval(poner_frase, 5000);
