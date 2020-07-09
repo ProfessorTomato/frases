@@ -35,14 +35,35 @@ const frases_json = {
   ],
 };
 
+//
+const tiempo_s = 5;
+
 function entero_aleatorio(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function iniciar_contador(tiempo_s) {
+  let id_contador = document.getElementById("contador");
+  let tiempo = tiempo_s;
+
+  id_contador.innerText = tiempo_s;
+  let intervalo = setInterval(function () {
+    if (tiempo > 0) {
+      if (tiempo > 1) id_contador.innerText = tiempo - 1;
+      else id_contador.innerText = tiempo_s;
+      tiempo--;
+    } else {
+      clearInterval(intervalo);
+    }
+  }, 1000);
+}
+
 function poner_frase() {
   let aleatorio = entero_aleatorio(0, frases_json.frases.length - 1);
+
+  iniciar_contador(tiempo_s);
 
   document.getElementById("frase").innerText =
     '"' + frases_json.frases[aleatorio].frase + '"';
@@ -58,4 +79,4 @@ window.addEventListener(
   false
 );
 
-setInterval(poner_frase, 5000);
+setInterval(poner_frase, tiempo_s * 1000);
